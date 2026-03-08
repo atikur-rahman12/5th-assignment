@@ -14,7 +14,7 @@ document.getElementById('btn-login')
         // 3-1. true::>> alert > Homepage
         alert("Login Success");
 
-        window.location.assign("/home.html")
+        window.location.assign("home.html")
     }
     else if(userName !== "admin" && password == "admin123"){
         // 3-2. false::>> alert > return
