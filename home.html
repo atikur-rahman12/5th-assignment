@@ -74,9 +74,9 @@
     </header>
 
     <section class="w-[1110px] bg-white mx-auto mt-10 p-4">
-      <button class="btn btn-outline btn-primary w-[120px]">All</button>
-      <button class="btn btn-outline btn-primary w-[120px]">Open</button>
-      <button class="btn btn-outline btn-primary w-[120px]">Closed</button>
+      <button id="issue-btn" class="btn btn-outline btn-primary w-[120px] issue-btn">All</button>
+      <button id="issue-btn" class="btn btn-outline btn-primary w-[120px] issue-btn">Open</button>
+      <button id="issue-btn" class="btn btn-outline btn-primary w-[120px] issue-btn">Closed</button>
     </section>
 
     <section class="w-[1110px] bg-white mx-auto mt-5 p-4">
@@ -112,42 +112,11 @@
     </section>
 
     <section class="w-[1110px] bg-base-50 shadow mx-auto p-10">
-      <div id="card-container" class="w-11/12 grid grid-cols-4 gap-5">
-        <div
-          class="bg-white rounded-lg shadow-sm text-start py-10 px-5 w-[290px] h-[100%]"
-        >
-          <div class="space-y-4">
-            <div class="flex justify-between items-center">
-              <img src="./assets/Open-Status.png" alt="" />
-              <button class="btn btn-soft btn-secondary rounded-full w-[100px]">
-                HIGH
-              </button>
-            </div>
-
-            <h2 class="font-semibold">Fix navigation menu on mobile devices</h2>
-            <p class="text-[#64748B] text-sm">
-              The navigation menu doesn't collapse properly on mobile devices...
-            </p>
-
-            <div>
-              <button
-                class="btn btn-soft btn-secondary border-2 border-pink-300 rounded-full font-semibold"
-              >
-                <i class="fa-solid fa-bug"></i> BUG
-              </button>
-              <button
-                class="btn btn-soft btn-warning border-2 border-yellow-300 rounded-full font-semibold"
-              >
-                <i class="fa-solid fa-life-ring"></i> HELP WANTED
-              </button>
-            </div>
-
-            <hr class="-mx-5 border-gray-300" />
-            <p class="text-[#64748B] text-sm">#1 by john_doe</p>
-            <p class="text-[#64748B] text-sm">1/15/2024</p>
-          </div>
-        </div>
+      <div id="issue-container" class="w-11/12 grid grid-cols-3 gap-x-30 gap-y-9">
+        
       </div>
     </section>
+
+    <script src="./scripts/home.js"></script>
   </body>
 </html>
