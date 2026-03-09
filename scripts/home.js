@@ -6,6 +6,16 @@ const createElement = (arr) => {
   return htmlElements.join(" ");
 };
 
+const manageSpinner = (status) => {
+  if (status) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("issue-container").classList.add("hidden");
+  } else {
+    document.getElementById("issue-container").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
+  }
+};
+
 const removeActive = () => {
   const lessonButtons = document.querySelectorAll(".issue-btn");
   lessonButtons.forEach((btn) => {
@@ -21,26 +31,22 @@ const loadIssueDetail = async (id) => {
   displayIssueDetails(details.data);
 };
 
-// "id": 33,
-// "title": "Add bulk operations support",
-// "description": "Allow users to perform bulk actions like delete, update status on multiple items at once.",
-// "status": "open",
-// "labels": [
-// "enhancement"
-// ],
-// "priority": "low",
-// "author": "bulk_barry",
-// "assignee": "",
-// "createdAt": "2024-02-02T10:00:00Z",
-// "updatedAt": "2024-02-02T10:00:00Z"
-
 const displayIssueDetails = (issue) => {
+  let modalStatus;
+
+  // modal er status
+  if (issue.status === "open") {
+    modalStatus = "bg-[#00A96E] text-white";
+  } else {
+    modalStatus = "bg-[#A856f7] text-white";
+  }
+
   const detailsBox = document.getElementById("details-container");
   detailsBox.innerHTML = `
           <div class="space-y-5">
             <h2 class="text-2xl font-bold">${issue.title}</h2>
             <div class="flex items-center gap-3">
-              <span class="bg-[#00A96E] font-medium text-sm text-white px-4 py-1 rounded-full">${issue.status}</span>
+              <span class="${modalStatus} font-medium text-sm px-4 py-1 rounded-full uppercase">${issue.status}</span>
               <span class="text-[#64748B] text-sm">•</span>
               <p class="text-[#64748B] text-sm">Opened by ${issue.author}</p>
               <span class="text-[#64748B] text-sm">•</span>
@@ -70,10 +76,13 @@ const displayIssueDetails = (issue) => {
 };
 
 const loadIssues = (tab = "all") => {
+  manageSpinner(true);
+
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
+
       removeActive();
       const clickBtn = document.getElementById(`issue-btn-${tab}`);
       if (clickBtn) {
@@ -91,6 +100,8 @@ const loadIssues = (tab = "all") => {
       document.getElementById("issue-count").innerText = issues.length;
 
       displayIssues(issues);
+
+      manageSpinner(false);
     });
 };
 

@@ -10,9 +10,6 @@ document.getElementById("btn-login").addEventListener("click", function () {
   console.log(password);
   // 3. match password & name
   if (userName == "admin" && password == "admin123") {
-    // 3-1. true::>> alert > Homepage
-    alert("Login Success");
-
     window.location.assign("home.html");
   } else if (userName !== "admin" && password == "admin123") {
     // 3-2. false::>> alert > return
