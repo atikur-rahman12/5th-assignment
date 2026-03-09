@@ -143,7 +143,7 @@ const displayIssues = (issues) => {
     const card = document.createElement("div");
     card.innerHTML = `
         <div onclick="loadIssueDetail(${issue.id})"
-          class="bg-white rounded-lg shadow-sm text-start border-t-4 ${borderColor} py-10 px-5 transition hover:-translate-y-2 sm:w-[280px] w-100 h-[100%]"
+          class="bg-white rounded-lg shadow-sm text-start border-t-4 ${borderColor} py-10 px-5 transition hover:-translate-y-2 w-[280px] h-[100%]"
         >
           <div class="space-y-4">
             <div class="flex justify-between items-center">
