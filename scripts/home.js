@@ -1,7 +1,7 @@
 const createElement = (arr) => {
   const htmlElements = arr.map(
     (el) =>
-      `<span class="btn btn-soft btn-secondary border-2 border-pink-300 rounded-full">${el}</span>`,
+      `<span class="btn btn-soft btn-secondary border-2 text-[10px] border-pink-300 rounded-full">${el}</span>`,
   );
   return htmlElements.join(" ");
 };
@@ -57,7 +57,7 @@ const displayIssues = (issues) => {
     const card = document.createElement("div");
     card.innerHTML = `
         <div
-          class="bg-white rounded-lg shadow-sm text-start border-t-4 ${borderColor} py-10 px-5 w-[330px] h-[100%]"
+          class="bg-white rounded-lg shadow-sm text-start border-t-4 ${borderColor} py-10 px-5 w-[280px] h-[100%]"
         >
           <div class="space-y-4">
             <div class="flex justify-between items-center">
