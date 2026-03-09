@@ -82,7 +82,6 @@ const loadIssues = (tab = "all") => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-
       removeActive();
       const clickBtn = document.getElementById(`issue-btn-${tab}`);
       if (clickBtn) {
@@ -108,6 +107,15 @@ const loadIssues = (tab = "all") => {
 const displayIssues = (issues) => {
   const issueContainer = document.getElementById("issue-container");
   issueContainer.innerHTML = "";
+
+  if (issues.length === 0) {
+    issueContainer.innerHTML = `
+      <div class="text-center col-span-full py-10 space-y-2">
+        <h2 class="text-4xl font-bold text-red-500">No Issues Found</h2>
+        <p class="text-sm text-gray-500 font-medium">আপনার search অনুযায়ী কোনো issue পাওয়া যায়নি</p>
+      </div>
+    `;
+  }
 
   issues.forEach((issue) => {
     let statusImage;
@@ -135,7 +143,7 @@ const displayIssues = (issues) => {
     const card = document.createElement("div");
     card.innerHTML = `
         <div onclick="loadIssueDetail(${issue.id})"
-          class="bg-white rounded-lg shadow-sm text-start border-t-4 ${borderColor} py-10 px-5 w-[280px] h-[100%]"
+          class="bg-white rounded-lg shadow-sm text-start border-t-4 ${borderColor} py-10 px-5 transition hover:-translate-y-2 w-[280px] h-[100%]"
         >
           <div class="space-y-4">
             <div class="flex justify-between items-center">
@@ -163,3 +171,26 @@ const displayIssues = (issues) => {
 };
 
 loadIssues();
+
+document.getElementById("btn-search").addEventListener("click", () => {
+  removeActive();
+  const input = document.getElementById("input-search");
+  const searchValue = input.value.trim().toLowerCase();
+
+  manageSpinner(true);
+
+  fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      const allIssues = data.data;
+      const filteredWords = allIssues.filter((issue) =>
+        issue.title.toLowerCase().includes(searchValue),
+      );
+
+      displayIssues(filteredWords);
+
+      manageSpinner(false);
+    });
+});
