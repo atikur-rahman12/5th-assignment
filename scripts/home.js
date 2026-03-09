@@ -6,22 +6,35 @@ const createElement = (arr) => {
   return htmlElements.join(" ");
 };
 
-// const removeActive = () => {
-//   const lessonButtons = document.querySelectorAll(".issue-btn");
-//   lessonButtons.forEach((btn) => {
-//     btn.classList.remove("btn-active");
-//   });
-// };
+const removeActive = () => {
+  const lessonButtons = document.querySelectorAll(".issue-btn");
+  lessonButtons.forEach((btn) => {
+    btn.classList.remove("btn-active");
+  });
+};
 
-const loadIssues = (id) => {
+const loadIssues = (tab = "all") => {
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      //   removeActive();
-      //   const clickBtn = document.getElementById(`issue-btn-${id}`);
-      //   clickBtn.classList.add("btn-active");
-      displayIssues(data.data);
+      removeActive();
+      const clickBtn = document.getElementById(`issue-btn-${tab}`);
+      if (clickBtn) {
+        clickBtn.classList.add("btn-active");
+      }
+
+      let issues = data.data;
+
+      if (tab === "open") {
+        issues = issues.filter((issue) => issue.status === "open");
+      } else if (tab === "closed") {
+        issues = issues.filter((issue) => issue.status === "closed");
+      }
+
+      document.getElementById("issue-count").innerText = issues.length;
+
+      displayIssues(issues);
     });
 };
 
@@ -72,16 +85,3 @@ const displayIssues = (issues) => {
 };
 
 loadIssues();
-
-// const loadLevelWord = (id) => {
-//   manageSpinner(true);
-//   const url = `https://openapi.programming-hero.com/api/level/${id}`;
-//   fetch(url)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       removeActive();
-//       const clickBtn = document.getElementById(`lesson-btn-${id}`);
-//       clickBtn.classList.add("btn-active");
-//       displayLevelWord(data.data);
-//     });
-// };

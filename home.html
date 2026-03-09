@@ -74,9 +74,29 @@
     </header>
 
     <section class="w-[1110px] bg-white mx-auto mt-10 p-4">
-      <button id="issue-btn" class="btn btn-outline btn-primary w-[120px] issue-btn">All</button>
-      <button id="issue-btn" class="btn btn-outline btn-primary w-[120px] issue-btn">Open</button>
-      <button id="issue-btn" class="btn btn-outline btn-primary w-[120px] issue-btn">Closed</button>
+      <button
+        id="issue-btn-all"
+        onclick="loadIssues('all')"
+        class="btn btn-outline btn-primary w-[120px] issue-btn"
+      >
+        All
+      </button>
+
+      <button
+        id="issue-btn-open"
+        onclick="loadIssues('open')"
+        class="btn btn-outline btn-primary w-[120px] issue-btn"
+      >
+        Open
+      </button>
+
+      <button
+        id="issue-btn-closed"
+        onclick="loadIssues('closed')"
+        class="btn btn-outline btn-primary w-[120px] issue-btn"
+      >
+        Closed
+      </button>
     </section>
 
     <section class="w-[1110px] bg-white mx-auto mt-5 p-4">
@@ -112,9 +132,10 @@
     </section>
 
     <section class="w-[1110px] bg-base-50 shadow mx-auto p-10">
-      <div id="issue-container" class="w-11/12 grid grid-cols-3 gap-x-30 gap-y-9">
-        
-      </div>
+      <div
+        id="issue-container"
+        class="w-11/12 grid grid-cols-3 gap-x-30 gap-y-9"
+      ></div>
     </section>
 
     <script src="./scripts/home.js"></script>
