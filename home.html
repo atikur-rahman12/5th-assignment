@@ -46,19 +46,19 @@
   <body class="bg-base-200">
     <header class="">
       <div class="navbar bg-base-100 shadow-sm">
-        <div class="logo w-[50px] ml-10">
+        <div class="logo w-[30px] md:w-[50px] ml-10">
           <img src="./assets/github-logo.png" alt="" />
         </div>
         <div class="flex-1">
-          <a class="btn btn-ghost text-xl">GitHub Issues Tracker</a>
+          <a class="btn btn-ghost text-sm whitespace-nowrap md:text-xl"><span class="hidden sm:inline">GitHub</span> Issues Tracker</a>
         </div>
-        <div class="flex gap-2">
+        <div class="flex gap-2 items-center">
           <div class="relative">
             <input
               id="input-search"
               type="text"
               placeholder="Search issues..."
-              class="input input-bordered w-24 md:w-auto text-blue-800 border-blue-600"
+              class="input input-bordered w-32 md:w-64 text-blue-800 border-blue-600"
             />
 
             <button
@@ -75,11 +75,11 @@
       </div>
     </header>
 
-    <section class="w-[1250px] bg-white mx-auto mt-10 p-4">
+    <section class="max-w-[1250px] w-full bg-white mx-auto mt-10 p-4">
       <button
         id="issue-btn-all"
         onclick="loadIssues('all')"
-        class="btn btn-outline btn-primary w-[120px] issue-btn"
+        class="btn btn-outline btn-primary flex-1 min-w-[80px] issue-btn"
       >
         All
       </button>
@@ -87,7 +87,7 @@
       <button
         id="issue-btn-open"
         onclick="loadIssues('open')"
-        class="btn btn-outline btn-primary w-[120px] issue-btn"
+        class="btn btn-outline btn-primary flex-1 min-w-[80px] issue-btn"
       >
         Open
       </button>
@@ -95,14 +95,14 @@
       <button
         id="issue-btn-closed"
         onclick="loadIssues('closed')"
-        class="btn btn-outline btn-primary w-[120px] issue-btn"
+        class="btn btn-outline btn-primary flex-1 min-w-[80px] issue-btn"
       >
         Closed
       </button>
     </section>
 
-    <section class="w-[1250px] bg-white mx-auto mt-5 p-4">
-      <div class="flex justify-between">
+    <section class="max-w-[1250px] w-full bg-white mx-auto mt-5 p-4">
+      <div class="flex flex-col md:flex-row justify-between gap-4">
         <div class="flex justify-center items-center gap-2">
           <div>
             <img src="./assets/Aperture.png" alt="" />
@@ -137,10 +137,10 @@
       <span class="loading loading-dots loading-lg"></span>
     </section>
 
-    <section class="w-[1250px] bg-base-50 shadow mx-auto p-10">
+    <section class="max-w-[1250px] w-full bg-base-50 shadow mx-auto p-10">
       <div
         id="issue-container"
-        class="w-11/12 grid grid-cols-4 gap-x-30 gap-y-4"
+        class="w-11/12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-30 gap-y-4"
       ></div>
     </section>
 
