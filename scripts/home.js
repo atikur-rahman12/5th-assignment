@@ -192,5 +192,7 @@ document.getElementById("btn-search").addEventListener("click", () => {
       displayIssues(filteredWords);
 
       manageSpinner(false);
+
+      input.value = "";
     });
 });
